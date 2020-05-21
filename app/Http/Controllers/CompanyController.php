@@ -1,0 +1,89 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Company;
+use phpDocumentor\Reflection\Types\Compound;
+
+class CompanyController extends Controller
+{
+    public function index() {
+        return view('pages.home');
+    }
+
+    public function allCompanies() {
+        return view('pages.all-companies', ['companies' => Company::all()]);
+    }
+
+    public function oneCompany(Company $company) {
+        return view('pages.one-company', ['company' => $company]);
+    }
+
+
+    public function addCompany() {
+        return view('pages.add-company');
+    }
+
+    public function storeCompany(Request $request) {
+        $request->validate([
+            'company' => ['required', 'max:255'],
+            'code' => ['required', 'digits:9'],
+            'pvmCode' => ['required', 'max:20'],
+            'address' => ['required', 'max:255'],
+            'phone' => ['required', 'starts_with:+'],
+            'email' => ['required', 'email', 'max:255'],
+            'about' => ['required', 'max:1000'],
+            'director' => ['required', 'max:255']
+        ]);
+
+        Company::create([
+            'title' => $request->input('company'),
+            'code' => $request->input('code'),
+            'pvm_code' => $request->input('pvmCode'),
+            'address' => $request->input('address'),
+            'phone' => $request->input('phone'),
+            'email' => $request->input('email'),
+            'about'=> $request->input('about'),
+            'director' => $request->input('director')
+        ]);
+        return redirect('/all-companies');
+    }
+
+
+    public function editCompany(Company $company) {
+        return view('pages.edit-company', ['company' => $company]);
+    }
+
+
+    public function updateCompany(Request $request, Company $company) {
+        $request->validate([
+            'company' => ['required', 'max:255'],
+            'code' => ['required', 'digits:9'],
+            'pvmCode' => ['required', 'max:20'],
+            'address' => ['required', 'max:255'],
+            'phone' => ['required', 'starts_with:+'],
+            'email' => ['required', 'email', 'max:255'],
+            'about' => ['required', 'max:1000'],
+            'director' => ['required', 'max:255']
+        ]);
+
+        $company->update([
+            'title' => $request->input('company'),
+            'code' => $request->input('code'),
+            'pvm_code' => $request->input('pvmCode'),
+            'address' => $request->input('address'),
+            'phone' => $request->input('phone'),
+            'email' => $request->input('email'),
+            'about'=> $request->input('about'),
+            'director' => $request->input('director')
+        ]);
+
+        return redirect('/company/'.$company->id);
+    }
+
+    public function delete(Company $company) {
+        $company->delete();
+        return redirect('/all-companies');
+    }
+}
