@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 //    return view('pages.home');
 //});
 
-Route::get('/', 'CompanyController@index');
+Route::get('/', 'CompanyController@search');
 
 Route::get('/all-companies', 'CompanyController@allCompanies');
 

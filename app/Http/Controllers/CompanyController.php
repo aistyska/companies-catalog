@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Company;
+use Illuminate\Validation\Rule;
 use phpDocumentor\Reflection\Types\Compound;
 
 class CompanyController extends Controller
@@ -13,7 +14,8 @@ class CompanyController extends Controller
     }
 
     public function allCompanies() {
-        return view('pages.all-companies', ['companies' => Company::all()]);
+        $companies = Company::orderBy('title', 'asc')->paginate(6);
+        return view('pages.all-companies', ['companies' => $companies]);
     }
 
     public function oneCompany(Company $company) {
@@ -27,9 +29,9 @@ class CompanyController extends Controller
 
     public function storeCompany(Request $request) {
         $request->validate([
-            'company' => ['required', 'max:255'],
-            'code' => ['required', 'digits:9'],
-            'pvmCode' => ['required', 'max:20'],
+            'company' => ['required', 'max:255', 'unique:App\Company,title'],
+            'code' => ['required', 'digits:9', 'unique:App\Company,code'],
+            'pvmCode' => ['required', 'max:20', 'unique:App\Company,pvm_code'],
             'address' => ['required', 'max:255'],
             'phone' => ['required', 'starts_with:+'],
             'email' => ['required', 'email', 'max:255'],
@@ -58,9 +60,9 @@ class CompanyController extends Controller
 
     public function updateCompany(Request $request, Company $company) {
         $request->validate([
-            'company' => ['required', 'max:255'],
-            'code' => ['required', 'digits:9'],
-            'pvmCode' => ['required', 'max:20'],
+            'company' => ['required', 'max:255', Rule::unique('companies', 'title')->ignore($company)],
+            'code' => ['required', 'digits:9', Rule::unique('companies')->ignore($company)],
+            'pvmCode' => ['required', 'max:20', Rule::unique('companies', 'pvm_code')->ignore($company)],
             'address' => ['required', 'max:255'],
             'phone' => ['required', 'starts_with:+'],
             'email' => ['required', 'email', 'max:255'],
@@ -85,5 +87,17 @@ class CompanyController extends Controller
     public function delete(Company $company) {
         $company->delete();
         return redirect('/all-companies');
+    }
+
+
+    public function search(Request $request) {
+       if ($request->has('company')) {
+           $results = Company::where('title', 'like', '%' . $request->input('company') . '%')->orderBy('title', 'asc')->paginate(6);
+           return view('pages.home', [
+               'searchInput' => $request->input('company'),
+               'results' => $results
+           ]);
+       }
+       return view('pages.home');
     }
 }

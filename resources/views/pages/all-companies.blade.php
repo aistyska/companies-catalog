@@ -23,4 +23,6 @@
             </tbody>
         </table>
     </div>
+    {{$companies->links()}}
+
 @endsection

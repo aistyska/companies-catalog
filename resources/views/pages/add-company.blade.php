@@ -54,7 +54,7 @@
         </div>
         <div class="form-group">
             <label for="about">Veiklos sritis</label>
-            <textarea class="form-control" id="about" name="about" placeholder="Įveskite informaciją apie įmonės veiklą" minlength="15" maxlength="1000" rows="3">{{ old('about') }}</textarea>
+            <textarea class="form-control" id="about" name="about" placeholder="Įveskite informaciją apie įmonės veiklą" minlength="10" maxlength="1000" rows="3">{{ old('about') }}</textarea>
             @error('about')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -66,8 +66,8 @@
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-        <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i> Pridėti</button>
-        <a role="button" href="/all-companies" class="btn btn-danger"><i class="fas fa-ban"></i> Atšaukti</a>
+        <button type="submit" class="btn btn-outline-success"><i class="fas fa-plus"></i> Pridėti</button>
+        <a role="button" href="/all-companies" class="btn btn-outline-danger"><i class="fas fa-ban"></i> Atšaukti</a>
     </form>
 
 @endsection

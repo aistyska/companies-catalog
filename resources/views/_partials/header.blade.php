@@ -1,5 +1,5 @@
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="/">Pagrindinis</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -18,4 +18,4 @@
             </ul>
         </div>
     </nav>
-
+</header>

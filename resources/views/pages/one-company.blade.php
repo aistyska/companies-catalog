@@ -14,9 +14,9 @@
             <p><strong>Adresas: </strong>{{$company->address}}</p>
             <p><strong>Telefono numeris: </strong>{{$company->phone}}</p>
             <p><strong>El. paštas: </strong>{{$company->email}}</p>
-            <a class="btn btn-success" href="/edit/{{$company->id}}" role="button"><i class="fas fa-edit"></i> Redaguoti</a>
-            <a class="btn btn-danger" href="/delete/{{$company->id}}" role="button"><i class="far fa-trash-alt"></i> Ištrinti</a>
-            <a class="btn btn-primary" href="/all-companies" role="button"><i class="fas fa-arrow-left"></i> Grįžti atgal</a>
+            <a class="btn btn-outline-success" href="/edit/{{$company->id}}" role="button"><i class="fas fa-edit"></i> Redaguoti</a>
+            <a class="btn btn-outline-danger" href="/delete/{{$company->id}}" role="button"><i class="far fa-trash-alt"></i> Ištrinti</a>
+            <a class="btn btn-outline-secondary" href="{{url()->previous()}}" role="button"><i class="fas fa-arrow-left"></i> Grįžti atgal</a>
         </div>
     </div>
 

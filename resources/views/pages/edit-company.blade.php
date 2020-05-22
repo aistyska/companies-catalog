@@ -66,8 +66,8 @@
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-        <button type="submit" class="btn btn-success"><i class="fas fa-lock"></i> Išsaugoti</button>
-        <a role="button" href="/company/{{$company->id}}" class="btn btn-danger"><i class="fas fa-ban"></i> Atšaukti</a>
+        <button type="submit" class="btn btn-outline-success"><i class="fas fa-lock"></i> Išsaugoti</button>
+        <a role="button" href="/company/{{$company->id}}" class="btn btn-outline-danger"><i class="fas fa-ban"></i> Atšaukti</a>
     </form>
 
 @endsection
