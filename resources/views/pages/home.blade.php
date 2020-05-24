@@ -5,9 +5,9 @@
     <h3 class="my-3">Paieška</h3>
     <form class="my-2" method="get">
         <div class="form-group">
-            <label for="company">Įmonės pavadinimas</label>
+            <label for="company">Įmonės pavadinimas arba kodas</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="company" name="company" value="{{$searchInput ?? ''}}" placeholder="Įmonės pavadinimas" aria-label="Įmonės pavadinimas" aria-describedby="search">
+                <input type="text" class="form-control" id="company" name="company" value="{{$searchInput ?? ''}}" placeholder="Įmonės pavadinimas arba kodas" aria-label="Įmonės pavadinimas" aria-describedby="search">
                 <div class="input-group-append">
                     <button class="btn btn-outline-success" type="button" id="search"><i class="fas fa-search"></i> Ieškoti</button>
                 </div>
