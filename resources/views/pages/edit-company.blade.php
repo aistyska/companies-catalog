@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h3>Įmonės informacijos atnaujinimas</h3>
+    <h3 class="my-3">Įmonės informacijos atnaujinimas</h3>
     <p>Redaguokite ankščiau išsaugotą informaciją apie įmonę</p>
     <form method="post" action="/store-update/{{$company->id}}">
         {{csrf_field()}}
@@ -66,8 +66,8 @@
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-        <button type="submit" class="btn btn-outline-success"><i class="fas fa-lock"></i> Išsaugoti</button>
-        <a role="button" href="/company/{{$company->id}}" class="btn btn-outline-danger"><i class="fas fa-ban"></i> Atšaukti</a>
+        <button type="submit" class="btn btn-outline-success mb-4"><i class="fas fa-lock"></i> Išsaugoti</button>
+        <a role="button" href="/company/{{$company->id}}" class="btn btn-outline-danger mb-4"><i class="fas fa-ban"></i> Atšaukti</a>
     </form>
 
 @endsection

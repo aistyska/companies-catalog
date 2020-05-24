@@ -9,7 +9,20 @@ use phpDocumentor\Reflection\Types\Compound;
 
 class CompanyController extends Controller
 {
-    public function index() {
+    public function search(Request $request) {
+        if ($request->has('company')) {
+            $request->validate([
+                'company' => ['min:3']
+            ]);
+            $results = Company::where('title', 'like', '%' . $request->input('company') . '%')
+                ->orWhere('code', 'like', '%' . $request->input('company') . '%')
+                ->orderBy('title', 'asc')
+                ->paginate(6);
+            return view('pages.home', [
+                'searchInput' => $request->input('company'),
+                'results' => $results
+            ]);
+        }
         return view('pages.home');
     }
 
@@ -89,15 +102,4 @@ class CompanyController extends Controller
         return redirect('/all-companies');
     }
 
-
-    public function search(Request $request) {
-       if ($request->has('company')) {
-           $results = Company::where('title', 'like', '%' . $request->input('company') . '%')->orderBy('title', 'asc')->paginate(6);
-           return view('pages.home', [
-               'searchInput' => $request->input('company'),
-               'results' => $results
-           ]);
-       }
-       return view('pages.home');
-    }
 }

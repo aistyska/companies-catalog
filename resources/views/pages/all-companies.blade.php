@@ -1,7 +1,8 @@
 @extends('main')
 
 @section('content')
-    <div class="table-responsive">
+    <h3 class="my-3">Įmonių katalogas</h3>
+    <div class="table-responsive mb-2">
         <table class="table table-hover">
             <thead>
             <tr>
