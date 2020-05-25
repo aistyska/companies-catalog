@@ -30,3 +30,10 @@ Route::get('/edit/{company}', 'CompanyController@editCompany');
 Route::post('/store-update/{company}', 'CompanyController@updateCompany');
 
 Route::get('/delete/{company}', 'CompanyController@delete');
+
+Auth::routes();
+
+
+//Logout
+
+Route::get('/logout', 'LoginController@logout');

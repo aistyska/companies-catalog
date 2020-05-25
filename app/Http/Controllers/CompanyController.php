@@ -9,6 +9,12 @@ use phpDocumentor\Reflection\Types\Compound;
 
 class CompanyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['search', 'allCompanies', 'oneCompany']]);
+    }
+
+
     public function search(Request $request) {
         if ($request->has('company')) {
             $request->validate([
@@ -52,7 +58,7 @@ class CompanyController extends Controller
             'director' => ['required', 'max:255']
         ]);
 
-        Company::create([
+        $company = Company::create([
             'title' => $request->input('company'),
             'code' => $request->input('code'),
             'pvm_code' => $request->input('pvmCode'),
@@ -62,7 +68,7 @@ class CompanyController extends Controller
             'about'=> $request->input('about'),
             'director' => $request->input('director')
         ]);
-        return redirect('/all-companies');
+        return redirect('/company/'.$company->id)->with('success', 'Informacija apie įmonę išsaugota');
     }
 
 
@@ -94,7 +100,7 @@ class CompanyController extends Controller
             'director' => $request->input('director')
         ]);
 
-        return redirect('/company/'.$company->id);
+        return redirect('/company/'.$company->id)->with('success', 'Informacija atnaujinta sėkmingai');
     }
 
     public function delete(Company $company) {
