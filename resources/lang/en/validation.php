@@ -162,12 +162,12 @@ return [
             'max' => 'El. pašto adresas negali būti ilgesnis nei :max simboliai.'
         ],
         'about' => [
-            'required' => 'Informacija apie įmonės veiklos sritis yra privaloma.',
+            'required' => 'Privaloma nurodyti informacija apie įmonės veiklos sritis.',
             'max' => 'Informacija apie įmonės veiklą negali būti ilgesnė nei :max simbolių.'
         ],
         'director' => [
-            'required' => 'Privaloma nuridyti įmonės vadovą.',
-            'max:255' => 'Įmonės vadovo vardą ir pavardę gali sudaryti ne daugiau :max simboliai.'
+            'required' => 'Privaloma nurodyti įmonės vadovą.',
+            'max' => 'Įmonės vadovo vardą ir pavardę gali sudaryti ne daugiau kaip :max simboliai.'
         ]
     ],
 
