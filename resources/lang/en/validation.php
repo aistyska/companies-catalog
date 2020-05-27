@@ -133,7 +133,45 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'company' => [
+            'required' => 'Įmonės pavadinimas yra privalomas.',
+            'max' => 'Įmonės pavadinimas negali būti ilgesnis nei :max simboliai.',
+            'unique' => 'Toks įmonės pavadinimas jau egzistuoja.'
+        ],
+        'code' => [
+            'required' => 'Įmonės kodas yra privalomas.',
+            'digits' => 'Įmonė kodas turi būti sudarytas iš :digits skaitmenų.',
+            'unique' => 'Toks įmonės kodas jau egzistuoja.'
+        ],
+        'pvmCode' => [
+            'required' => 'PVM mokėtojo kodas yra privalomas.',
+            'max' => 'PVM mokėtojo kodas negali būti ilgesnis nei :max simbolių.',
+            'unique' => 'Toks PVM mokėtojo kodas jau egzistuoja.'
+        ],
+        'address' => [
+            'required'=> 'Adresas yra privalomas.',
+            'max' => 'Adresas negali būti ilgesnis nei :max simboliai.'
+        ],
+        'phone' => [
+            'required' => 'Telefono numeris yra privalomas.',
+            'starts_with' => 'Telefono numeris turi prasidėti :values.'
+        ],
+        'email' => [
+            'required' => 'El. pašto adresas yra privalomas.',
+            'email' => 'Tai turi būti validus el. pašto adresas',
+            'max' => 'El. pašto adresas negali būti ilgesnis nei :max simboliai.'
+        ],
+        'about' => [
+            'required' => 'Informacija apie įmonės veiklos sritis yra privaloma.',
+            'max' => 'Informacija apie įmonės veiklą negali būti ilgesnė nei :max simbolių.'
+        ],
+        'director' => [
+            'required' => 'Privaloma nuridyti įmonės vadovą.',
+            'max:255' => 'Įmonės vadovo vardą ir pavardę gali sudaryti ne daugiau :max simboliai.'
+        ]
     ],
+
+
 
     /*
     |--------------------------------------------------------------------------
