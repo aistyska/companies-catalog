@@ -136,7 +136,8 @@ return [
         'company' => [
             'required' => 'Įmonės pavadinimas yra privalomas.',
             'max' => 'Įmonės pavadinimas negali būti ilgesnis nei :max simboliai.',
-            'unique' => 'Toks įmonės pavadinimas jau egzistuoja.'
+            'unique' => 'Toks įmonės pavadinimas jau egzistuoja.',
+            'min' => 'Paieškos ilgis turi būti bent :min simboliai.'
         ],
         'code' => [
             'required' => 'Įmonės kodas yra privalomas.',

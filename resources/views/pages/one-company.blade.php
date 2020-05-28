@@ -6,6 +6,10 @@
         <div class="alert alert-success mt-1">
             {{ session('success') }}
         </div>
+    @elseif(session('restriction'))
+        <div class="alert alert-danger mt-1">
+            {{ session('restriction') }}
+        </div>
     @endif
 
     <a class="btn btn-outline-secondary btn-sm my-3 mr-1" href="{{url()->previous()}}" role="button"><i class="fas fa-arrow-left"></i> Grįžti atgal</a>
@@ -21,9 +25,13 @@
             <p><strong>Adresas: </strong>{{$company->address}}</p>
             <p><strong>Telefono numeris: </strong>{{$company->phone}}</p>
             <p><strong>El. paštas: </strong>{{$company->email}}</p>
+            @can('update-company', $company)
             <a class="btn btn-outline-success mb-3" href="/edit/{{$company->id}}" role="button"><i class="fas fa-edit"></i> Redaguoti</a>
+            @endcan
+            @can('delete-company', $company)
             <button type="button" class="btn btn-outline-danger mb-3" data-toggle="modal" data-target="#deleteModal"><i class="far fa-trash-alt"></i> Ištrinti</button>
-{{--            Modal--}}
+            @endcan
+            {{--Modal--}}
             <div class="modal fade" id="deleteModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">

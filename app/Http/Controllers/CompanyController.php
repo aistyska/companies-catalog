@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Company;
 use Illuminate\Validation\Rule;
-use phpDocumentor\Reflection\Types\Compound;
 
 class CompanyController extends Controller
 {
@@ -66,13 +66,17 @@ class CompanyController extends Controller
             'phone' => $request->input('phone'),
             'email' => $request->input('email'),
             'about'=> $request->input('about'),
-            'director' => $request->input('director')
+            'director' => $request->input('director'),
+            'user_id' => auth()->id()
         ]);
         return redirect('/company/'.$company->id)->with('success', 'Informacija apie įmonę išsaugota');
     }
 
 
     public function editCompany(Company $company) {
+        if (Gate::denies('update-company', $company)) {
+            return redirect('/company/'.$company->id)->with('restriction', 'Jūs negalite redaguoti informacijos apie šią įmonę, nes ją įvedė kitas vartotojas');
+        }
         return view('pages.edit-company', ['company' => $company]);
     }
 
@@ -104,6 +108,9 @@ class CompanyController extends Controller
     }
 
     public function delete(Company $company) {
+        if (Gate::denies('delete-company', $company)) {
+            return redirect('/company/'.$company->id)->with('restriction', 'Jūs negalite ištrinti šios įmonės, nes informaciją apie ją išsaugojo kitas vartotojas');
+        }
         $company->delete();
         return redirect('/all-companies');
     }
